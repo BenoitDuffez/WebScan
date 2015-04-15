@@ -1,2 +1,2 @@
 # WebScan
-Web interface to scaned
+Web interface to saned
