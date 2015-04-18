@@ -6,17 +6,23 @@
 <form method="get" action="/scan/wait-pdf.php"><?php
 
 $dir = opendir('scans/');
+$files = array();
 $i = 0;
 while ($file = readdir($dir)) {
 	if ($file == '.' || $file == '..') {
 		continue;
 	}
+	$files[] = $file;
+}
+sort($files);
 
-	printf('<label for="%s"><input id="%s" type="checkbox" value="%s" name="files[%d]" /> %s</label><br />',
-		md5($file), md5($file), $file, $i, $file);
+foreach($files as $file) {
+	printf('<label style="float: left" for="%s"><input style="float: left" id="%s" type="checkbox" value="%s" name="files[%d]" /><img src="pic.php?file=%s" alt="%s" /></label>',
+		md5($file), md5($file), $file, $i, $file, $file);
 	$i++;
 }
 closedir($dir);
+echo '<p style="clear: both">&nbsp;</p>';
 if ($i == 0) {
 	echo "<p>Il n'y a aucune page de scannée.</p>";
 } else {
