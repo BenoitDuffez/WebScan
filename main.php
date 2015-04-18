@@ -3,7 +3,15 @@
 
 <h2>Générer un PDF</h2>
 <p>Utiliser cette option pour prendre une ou plusieurs pages et les combiner en PDF</p>
-<form method="get" action="/scan/wait-pdf.php"><?php
+<script type="text/javascript">
+function createPdf() {
+	var name = prompt("Quel nom de fichier? (sans la date)", '<?php echo date('G-i-s'); ?>');
+	document.getElementById('filename').value = name;
+	document.getElementById('pdfForm').submit();
+}
+</script>
+<form id="pdfForm" method="get" action="/scan/wait-pdf.php">
+<?php
 
 $dir = opendir('scans/');
 $files = array();
@@ -26,7 +34,10 @@ echo '<p style="clear: both">&nbsp;</p>';
 if ($i == 0) {
 	echo "<p>Il n'y a aucune page de scannée.</p>";
 } else {
-	echo '<input type="submit" value="Créer un PDF avec ces fichiers" />';
+	echo <<<HTML
+<input type="hidden" name="filename" id="filename" />
+<input type="button" onclick="javascript:createPdf();" value="Créer un PDF avec ces fichiers" />
+HTML;
 }
 
 ?>
