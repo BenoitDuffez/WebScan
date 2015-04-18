@@ -40,10 +40,9 @@ $dir = opendir('results/');
 $i = 0;
 $files = array();
 while ($file = readdir($dir)) {
-	if ($file == '.' || $file == '..') {
-		continue;
+	if (preg_match('/^.*\.pdf$/i', $file)) {
+		$files[] = $file;
 	}
-	$files[] = $file;
 }
 sort($files);
 
