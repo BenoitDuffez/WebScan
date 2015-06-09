@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+<?php
+
+/**
+ * Generic logging function
+ */
+function ws_log($msg) {
+	$f = fopen('/var/log/bicou/scan.log', 'a+');
+	$lines = explode("\n", $msg);
+	foreach ($lines as $line) {
+		fprintf($f, "%s %s\n", date('Y/m/d H:i:s'), $line);
+	}
+	fclose($f);
+}
+
+?><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
