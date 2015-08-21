@@ -5,7 +5,7 @@ header('Location: /scan/');
 $files = implode(' scans/', $_GET['files']);
 sort($files);
 $target = sprintf("results/%s_%s.pdf", date('Y-m-d'), $_GET['filename']);
-$cmd = sprintf("convert -compress jpeg 'scans/%s' '%s'", $files, $target);
+$cmd = sprintf("convert -compress jpeg scans/%s '%s'", $files, $target);
 
 ws_log("executing: $cmd");
 
