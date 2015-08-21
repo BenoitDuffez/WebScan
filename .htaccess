@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule		index.php		-  				[QSA,L]
+RewriteRule 		pic.php			-				[L]
+RewriteRule 		download.php		-				[L]
+RewriteRule		(.*)\.php		index.php?page=$1		[QSA,L]
+
