@@ -36,6 +36,7 @@ if ($i == 0) {
 } else {
 	echo <<<HTML
 <input type="hidden" name="filename" id="filename" />
+<input type="submit" name="delete" value="Supprimer" /> les fichiers sélectionnés (irréversible!)<br />
 <input type="button" onclick="javascript:createPdf();" value="Créer un PDF avec ces fichiers" />
 HTML;
 }
