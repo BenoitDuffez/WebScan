@@ -1,13 +1,28 @@
 <?php
 
-if (isset($_GET['delete'])) {
+if (isset($_GET['delete']) || isset($_GET['download'])) {
+	$delete = isset($_GET['delete']);
+	if ($delete) {
+		header("Location: /scan/");
+	} else {
+		echo <<<HTML
+<h2>Téléchargement au format jpg</h2>
+<p>Faire clic droit: enregistrer la cible sous</p>
+HTML;
+	}
+
 	$path = str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']);
 	foreach ($_GET['files'] as $name) {
 		$file = $path . "scans/" . $name;
 		if (file_exists($file) && strpos($name, '/') === false) {
-			unlink($file);
-			header("Location: /scan/");
-			echo "<p>Delete $name</p>";
+			if ($delete) {
+				exec("trash $file");
+				echo "<p>Delete $name</p>";
+			} else {
+				echo <<<HTML
+<p><a href="scans/{$name}"><img src="pic.php?file={$name}" /></a></p>
+HTML;
+			}
 		}
 	}
 }
