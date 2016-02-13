@@ -42,7 +42,7 @@ h2:before {
 </head>
 <body>
 <div id="main">
-<h1>HP Deskjet F2100 Series</h1>
+<h1><a href="/scan/">HP Deskjet F2100 Series</a></h1>
 <hr />
 <?php
 
