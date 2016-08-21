@@ -16,8 +16,8 @@ HTML;
 		$file = $path . "scans/" . $name;
 		if (file_exists($file) && strpos($name, '/') === false) {
 			if ($delete) {
-				exec("trash $file");
-				echo "<p>Delete $name</p>";
+				echo "<p>Delete $file</p>";
+				unlink($file);
 			} else {
 				echo <<<HTML
 <p><a href="scans/{$name}"><img src="pic.php?file={$name}" /></a></p>
